@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Container</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+
+        .button-container button,
+        .button-container a.btn {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button {
+            background-color: #fb0606;
+        }
+
+        .button-container a.btn {
+            background-color: #e90808;
+        }
+
+        .button-container button:hover,
+        .button-container a.btn:hover {
+            background-color: #c2362a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <a href="./loginReg.html">
+        <button >Become a New Member</button>
+    </a>
+        <a href="emailOtp.html" class="btn">Guest login via OTP</a>
+    </div>
+</body>
+<script>
+    function openLocalhost() {
+        // Change the port number to your desired port
+        // var port = "3030"; // Example: "3000"
+        window.open("http://localhost:3030/");
+    }
+</script>
+
+</html>

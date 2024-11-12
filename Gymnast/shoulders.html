@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Card Progress Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #1a1a1a;
+      color: #333;
+    }
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+    .card {
+      width: 90%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      background-color: #2d2d2d;
+    }
+    .card:hover {
+      transform: scale(1.1);
+    }
+    .card-button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .card-button.completed {
+      background-color: red;
+      color: black;
+    }
+    #cardContainer {
+      width: 100%;
+      max-width: 500px;
+    }
+    #progress-bar {
+      width: 90%;
+      max-width: 500px;
+      height: 40px;
+      background-color: #ccc;
+      border-radius: 20px;
+      margin-top: auto;
+      position: relative;
+    }
+    #progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: red;
+      border-radius: 20px;
+      transition: width 0.5s ease;
+    }
+    video {
+      max-width: 100%;
+      max-height: 200px; /* Adjust the maximum height as needed */
+      border-radius: 10px; /* Added border-radius to match card design */
+    }
+    .hurray-message {
+      display: none;
+      font-size: 24px;
+      margin-top: 10px;
+      color: green;
+    }
+
+    /* Media Query for Phones */
+    @media only screen and (max-width: 600px) {
+      .card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cardContainer">
+  <div class="card">
+    <h2 style="color: #fff;">Exercise 1</h2>
+    <video controls>
+      <source src="/gym_images/shoulders/exer1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <br>
+    <button class="card-button" onclick="completeCard(this)">Not Completed</button>
+  </div>
+  
+  <div class="card">
+    <h2 style="color: #fff;">Exercise 2</h2>
+    <video controls>
+      <source src="/gym_images/shoulders/exer2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <br>
+    <button class="card-button" onclick="completeCard(this)">Not Completed</button>
+  </div>
+ 
+<div class="card">
+  <h2 style="color: #fff;">Exercise 3</h2>
+  <video controls>
+    <source src="/gym_images/shoulders/exer3.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br>
+  <button class="card-button" onclick="completeCard(this)">Not Completed</button>
+</div>
+  <!-- Add more cards similarly -->
+</div>
+
+<div id="progress-bar">
+  <div id="progress"></div>
+  <div class="hurray-message">Hurray!</div>
+</div>
+
+<script>
+  const cardContainer = document.getElementById('cardContainer');
+  const progress = document.getElementById('progress');
+  const cards = document.querySelectorAll('.card');
+  const progressBar = document.getElementById('progress-bar');
+  const hurrayMessage = document.querySelector('.hurray-message');
+
+  let completedCards = 0;
+
+  function updateProgress() {
+    const percent = ((completedCards / cards.length) * 100).toFixed(2);
+    progress.style.width = percent + '%';
+    progressBar.style.height = '40px'; // To make the progress bar prominent
+
+    if (percent >= 100) {
+      hurrayMessage.style.display = 'block';
+    }
+  }
+
+  function completeCard(button) {
+    if (!button.classList.contains('completed')) {
+      button.textContent = 'Completed';
+      button.classList.add('completed');
+      completedCards++;
+      updateProgress();
+    }
+  }
+
+  // Toggle Dark Mode
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+</script>
+
+</body>
+</html>
